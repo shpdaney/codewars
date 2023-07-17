@@ -16,8 +16,12 @@ for (let index = 0; index < array.length; index++) {
 }
 
 
-// For Of
+// For Of - Перебор элетентов массива
 for (let item of array) {
+	// Code here...
+}
+// For In - Перебор индексов массива
+for (let index in array) {
 	// Code here...
 }
 
@@ -98,6 +102,9 @@ const primer = array
 	})
 	.reduce((total, person) => total + person.budget, 0)
 // primer end
+
+// Каскадное создание двух мерного массива
+const matix = new Array(5).fill(0).map(x => Array(5).fill(0))
 
 
 
