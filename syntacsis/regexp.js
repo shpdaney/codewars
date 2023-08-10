@@ -1,3 +1,10 @@
+// URL validation
+const url = 'https://google.com'
+console.log(
+    /^http(s)?:\/\/(\w+\.)+\w+$/g.test(url)
+)
+
+
 // 1. Обьявление
 // const regExp1 = /qwerty/gmi
 // const regExp2 = new RegExp('qwerty', 'gmi')
