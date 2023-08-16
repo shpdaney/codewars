@@ -105,3 +105,12 @@ const primer = array
 
 // Каскадное создание двух мерного массива
 const matix = new Array(5).fill(0).map(x => Array(5).fill(0))
+
+// Поворот матрицы по часовой на 90
+function rotateRight(matrix) {
+  return matrix.map((val, index) => matrix.map(row => row[index]).reverse())
+}
+// Поворот матрицы против часовой на 90
+function rotateLeft(matrix) {
+  return matrix[0].map((val, index) => matrix.map(row => row[row.length-1-index]))
+}

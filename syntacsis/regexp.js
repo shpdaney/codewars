@@ -4,6 +4,13 @@ console.log(
     /^http(s)?:\/\/(\w+\.)+\w+$/g.test(url)
 )
 
+const email = 'person@mail.com'
+const name = 'Daney'
+const phones = [
+    '8 999 777 55 11',
+]
+const password = 'password'
+
 
 // 1. Обьявление
 // const regExp1 = /qwerty/gmi

@@ -1,49 +1,52 @@
-function triangle(row) {
-    const colors = 'RGB'
-    if (row.length === 1) {
-        return row
-    }
+// function playFlou(gameMap){
+//     //Coding like playing game
+//     var exampleSolution=[
+//         [[0,0,"Right"]],  //an example solution for basic test-1
+//         [[0,0,"Right"],[3,3,"Left"]],  //an example solution for basic test-2
+//         [[0,1,"Down"],[3,2,"Up"]],  //an example solution for basic test-3
+//         [[0,1,"Down"],[0,2,"Right"]],  //an example solution for basic test-4
+//         [[1,0,"Right"],[0,0,"Right"]]  //an example solution for basic test-5
+//     ]
+// }
 
-    let nextRow = ''
+function playFlou(gameMap) {
+  const regex = new RegExp('[A-Z\|\.]', 'g')
+  let res = []
+  let newGameMap = gameMap
+    .split('\n')
+    .filter(row => regex.test(row) && row)
+    .map(row => row
+      .split('')
+      .splice(1).reverse()
+      .splice(1).reverse()
+    )
 
-    function nextColor(left, right) {
-        if (left === right) {
-            return left
-        }
-        const deleteColor = (color, colors) => colors.replace(color, '');
-        let proxyColors = [...colors].join('')
-        proxyColors = deleteColor(left, proxyColors)
-        proxyColors = deleteColor(right, proxyColors)
-        return proxyColors
-    }
+  function rotateRight(matrix) {
+    return matrix.map((val, index) => matrix.map(row => row[index]).reverse())
+  }
+  function rotateLeft(matrix) {
+    return matrix[0].map((val, index) => matrix.map(row => row[row.length-1-index]))
+  }
 
-    for (let i = 0; i < row.length - 1; i++) {
-        let left = row[i],
-            right = row[i + 1]
-        nextRow += nextColor(left, right)
-    }
-    return triangle(nextRow)
+  console.table(newGameMap);
+  console.table(rotateRight(newGameMap));
+  console.table(rotateLeft(newGameMap));
+
+  const startPosition = [];
+  newGameMap.forEach((row, indexRow) => {
+      row.forEach((cell, indexCell) => {
+        /[A-Z]/.test(cell) && startPosition.push([indexRow, indexCell, cell])
+      })
+    })
+  console.log(startPosition);
 }
 
-function countRGB(row) {
-    const res = {R: 0, G: 0, B: 0}
-    row.split('')
-        .forEach(color => {
-            if (color === 'R') {
-                res.R += 1
-            } else if (color === 'G') {
-                res.G += 1
-            } else if (color === 'B') {
-                res.B += 1
-            }
-        })
-    console.log(res.R);
-    console.log(res.G);
-    console.log(res.B);
-}
 
-
-const row = 'rgrbgrbrbgbbgrgbgrbgrbgggbbbrrrrrrrrrbgbrbbgbgrbbbb'.toUpperCase()
-countRGB(row)
-console.log(triangle(row));
-
+const map =
+  `+----+
+|B...|
+|....|
+|....|
+|..B.|
++----+`
+playFlou(map)
