@@ -9,6 +9,7 @@
 //     ]
 // }
 
+// Flou--Play game Series #9
 function playFlou(gameMap) {
   const regex = new RegExp('[A-Z\|\.]', 'g')
   let res = []
@@ -21,16 +22,9 @@ function playFlou(gameMap) {
       .splice(1).reverse()
     )
 
-  function rotateRight(matrix) {
-    return matrix.map((val, index) => matrix.map(row => row[index]).reverse())
-  }
   function rotateLeft(matrix) {
     return matrix[0].map((val, index) => matrix.map(row => row[row.length-1-index]))
   }
-
-  console.table(newGameMap);
-  console.table(rotateRight(newGameMap));
-  console.table(rotateLeft(newGameMap));
 
   const startPosition = [];
   newGameMap.forEach((row, indexRow) => {
@@ -47,6 +41,6 @@ const map =
 |B...|
 |....|
 |....|
-|..B.|
+|....|
 +----+`
 playFlou(map)
